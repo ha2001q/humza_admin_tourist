@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}View Place | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">View Place</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Places</a></li>
+                 <li class="breadcrumb-item active">View</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <form id="createPlaceForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- Place Name -->
+                    <div class="mb-3">
+                        <label for="place_name" class="form-label">Place Name</label>
+                        <input type="text" class="form-control" id="place_name" name="place_name" value="{{ place.place_name }}" required readonly>
+                    </div>
+
+                    <!-- Place Description -->
+                    <div class="mb-3">
+                        <label for="place_description" class="form-label">Place Description</label>
+                        <textarea class="form-control" id="place_description" name="place_description" rows="3" required readonly >{{ place.place_description }}</textarea>
+                    </div>
+
+                    <!-- Place Location -->
+                    <div class="mb-3">
+                        <label for="place_location" class="form-label">Place Location</label>
+                        <input type="text" class="form-control" id="place_location" name="place_location" value="{{ place.place_location }}" required readonly>
+                    </div>
+
+                    <!-- Place Latitude and Longitude -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="Place_latitude" class="form-label">Place Latitude</label>
+                                <input type="text" class="form-control" id="Place_latitude" name="Place_latitude" value="{{ place.Place_latitude }}" required readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="Place_longitude" class="form-label">Place Longitude</label>
+                                <input type="text" class="form-control" id="Place_longitude" name="Place_longitude" value="{{ place.Place_longitude }}" required readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Images -->
+                    <div class="mb-3">
+                        <label class="form-label">Current Images</label>
+                        <div class="row">
+                            {% for image_url in place.place_image %}
+                            <div class="col-md-3 mb-3 position-relative">
+                                <div class="card">
+                                    <img src="{{ image_url }}" class="card-img-top img-thumbnail" alt="Place Image">
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Add New Images -->
+                    <!-- <div class="mb-3">
+                        <label for="new_images" class="form-label">Add New Images</label>
+                        <input type="file" class="form-control" id="new_images" name="new_images" multiple>
+                        <div class="row mt-3" id="image_preview_grid"></div>
+                    </div> -->
+
+                    <!-- Dropdowns for City and Type -->
+                    <div class="mb-3">
+                        <label for="city_id" class="form-label">City</label>
+                        <select class="form-control" id="city_id" name="city_id" required aria-readonly="true">
+                            {% for city in citys %}
+                            <option value="{{ city.id }}" {% if city.id == place.city_id %}selected{% endif %}>{{ city.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="type_id" class="form-label">Type</label>
+                        <select class="form-control" id="type_id" name="type_id" required aria-readonly="true">
+                            {% for type in types %}
+                            <option value="{{ type.id }}" {% if type.id == place.type_id %}selected{% endif %}>{{ type.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Rate Avg and Review Num -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="rate_avg" class="form-label">Rate Avg</label>
+                                <input type="text" class="form-control" id="rate_avg" name="rate_avg" value="{{ place.rate_avg }}" required readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="review_num" class="form-label">Review Num</label>
+                                <input type="number" class="form-control" id="review_num" name="review_num" value="{{ place.review_num }}" required readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <!-- <div class="mb-3">
+                        <div class="progress" style="height: 20px;">
+                            <div id="uploadProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div> -->
+
+
+                    <!-- Submit Button -->
+                    <!-- <button type="submit" class="btn btn-primary">Create</button> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Image preview functionality
+    document.getElementById('place_image').addEventListener('change', function () {
+        const imagePreviewGrid = document.getElementById('image_preview_grid');
+        imagePreviewGrid.innerHTML = ''; // Clear previous previews
+        Array.from(this.files).forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgDiv = `<div class="col-md-3 mb-3"><img src="${e.target.result}" class="img-thumbnail"></div>`;
+                    imagePreviewGrid.innerHTML += imgDiv;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert(`${file.name} is not a valid image file.`);
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}

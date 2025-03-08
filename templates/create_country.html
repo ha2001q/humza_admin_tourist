@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Country | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Create Country</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Countries</a></li>
+                 <li class="breadcrumb-item active">Create</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                  {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="country_name" class="form-label">Country Name</label>
+                        <input type="text" class="form-control" id="country_name" name="country_name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

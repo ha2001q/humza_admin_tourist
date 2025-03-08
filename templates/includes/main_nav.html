@@ -1,0 +1,127 @@
+{% load static %}
+<div class="main-nav">
+    <!-- Sidebar Logo -->
+    <div class="logo-box">
+         <a href="{% url 'index' %}" class="logo-dark">
+              <img src="{% static 'assets/images/logo.png' %}" width="70" height="70" alt="logo sm">
+              <!-- <img src="assets/images/logo.png" class="logo-sm" alt="logo sm">
+              <img src="assets/images/logo.png" class="logo-lg" alt="logo dark"> -->
+              <h3 >Yemen Tourist Guide</h3>
+         </a>
+
+         <a href="{% url 'index' %}" class="logo-light">
+              <img src="{% static 'assets/images/logo.png' %}" width="70" height="70" alt="logo sm">
+              <!-- <img src="assets/images/logo.png" width="80" height="80" alt="logo light"> -->
+              <h3>Yemen Tourist Guide</h3>
+         </a>
+    </div>
+
+    <!-- Menu Toggle Button (sm-hover) -->
+    <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar">
+         <i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i>
+    </button>
+
+    <div class="scrollbar" data-simplebar>
+
+         <ul class="navbar-nav" id="navbar-nav">
+
+              <li class="menu-title">Menu</li>
+
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'index' %}">
+                        <img src="{% static 'assets/icons/dashboardIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Dashboard</span>
+                   </a>
+              </li>
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'users' %}">
+                         <img src="{% static 'assets/icons/userIcon.svg' %}" width="15" height="15">
+                         <span class="nav-text">Users</span>
+                   </a>
+              </li>
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'types' %}">
+                        <img src="{% static 'assets/icons/typeIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Types</span>
+                   </a>
+              </li>
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'places' %}">
+                        <img src="{% static 'assets/icons/locationIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Places</span>
+                   </a>
+              </li>
+
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'reviews' %}">
+                        <img src="{% static 'assets/icons/reviewIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Reviews Management</span>
+                   </a>
+              </li>
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'favorites' %}">
+                        <img src="{% static 'assets/icons/favoriteIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Favorites</span>
+                   </a>
+              </li>
+               <!-- <li class="nav-item">
+                   <a class="nav-link" href="{% url 'places_services' %}">
+                         <img src="{% static 'assets/icons/locationIcon.svg' %}" width="15" height="15">
+                         <span class="nav-text">Place Services</span>
+                   </a>
+              </li> -->
+             <li class="nav-item">
+                    <a class="nav-link" href="{% url 'services' %}">
+                         <img src="{% static 'assets/icons/locationIcon.svg' %}" width="15" height="15">
+                         <span class="nav-text">Services</span>
+                    </a>
+               </li>
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'banners' %}">
+                        <img src="{% static 'assets/icons/bannerIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Banners</span>
+                   </a>
+              </li>
+
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'cities' %}">
+                        <img src="{% static 'assets/icons/cityIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Cities </span>
+                   </a>
+              </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="{% url 'countries' %}">
+                        <img src="{% static 'assets/icons/cityIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Countries</span>
+                   </a>
+              </li>
+             <!-- <li class="nav-item">
+                   <a class="nav-link" href="{% url 'notification' %}">
+                         <img src="{% static 'assets/icons/notific.svg' %}" width="15" height="15">
+                         <span class="nav-text">Notifications</span>
+                   </a>
+              </li> -->
+              <li class="nav-item">
+                   <a class="nav-link" href="{% url 'upload' %}">
+                        <img src="{% static 'assets/icons/uploadIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Upload places file</span>
+                   </a>
+              </li>
+
+              <!-- {% comment %} <li class="nav-item">
+                   <a class="nav-link" href="{% url 'settings' %}">
+                        <img src="{% static 'assets/icons/settingIcon.svg' %}" width="15" height="15">
+                        <span class="nav-text">Settings</span>
+                   </a>
+              </li> <!-- end Pages Menu --> {% endcomment %} -->
+
+
+         </ul>
+    </div>
+</div>

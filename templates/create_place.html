@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Place | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Create Place</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Places</a></li>
+                 <li class="breadcrumb-item active">Create</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <form id="createPlaceForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- Place Name -->
+                    <div class="mb-3">
+                        <label for="place_name" class="form-label">Place Name</label>
+                        <input type="text" class="form-control" id="place_name" name="place_name" required>
+                    </div>
+
+                    <!-- Place Description -->
+                    <div class="mb-3">
+                        <label for="place_description" class="form-label">Place Description</label>
+                        <textarea class="form-control" id="place_description" name="place_description" rows="3" required></textarea>
+                    </div>
+
+                    <!-- Place Location -->
+                    <div class="mb-3">
+                        <label for="place_location" class="form-label">Place Location</label>
+                        <input type="text" class="form-control" id="place_location" name="place_location" required>
+                    </div>
+
+                    <!-- Latitude and Longitude -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="place_latitude" class="form-label">Place Latitude</label>
+                                <input type="text" class="form-control" id="place_latitude" name="place_latitude" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="place_longitude" class="form-label">Place Longitude</label>
+                                <input type="text" class="form-control" id="place_longitude" name="place_longitude" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="mb-3">
+                        <label for="place_image" class="form-label">Place Images</label>
+                        <input type="file" class="form-control" id="place_image" name="place_image" multiple required>
+                        <div class="row mt-3" id="image_preview_grid"></div>
+                    </div>
+
+                    <!-- City Dropdown -->
+                    <div class="mb-3">
+                        <label for="city_id" class="form-label">City</label>
+                        <select class="form-control" id="city_id" name="city_id" required>
+                            {% for city in citys %}
+                            <option value="{{ city.id }}">{{ city.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Type Dropdown -->
+                    <div class="mb-3">
+                        <label for="type_id" class="form-label">Type</label>
+                        <select class="form-control" id="type_id" name="type_id" required>
+                            {% for type in types %}
+                            <option value="{{ type.id }}">{{ type.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Rate Avg -->
+                    <div class="mb-3">
+                        <label for="rate_avg" class="form-label">Rate Avg</label>
+                        <input type="text" class="form-control" id="rate_avg" name="rate_avg" required>
+                    </div>
+
+                    <!-- Review Num -->
+                    <div class="mb-3">
+                        <label for="review_num" class="form-label">Review Num</label>
+                        <input type="text" class="form-control" id="review_num" name="review_num" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Image preview functionality
+    document.getElementById('place_image').addEventListener('change', function () {
+        const imagePreviewGrid = document.getElementById('image_preview_grid');
+        imagePreviewGrid.innerHTML = ''; // Clear previous previews
+        Array.from(this.files).forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgDiv = `<div class="col-md-3 mb-3"><img src="${e.target.result}" class="img-thumbnail"></div>`;
+                    imagePreviewGrid.innerHTML += imgDiv;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert(`${file.name} is not a valid image file.`);
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}

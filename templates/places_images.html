@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Places Images Management | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Places Images Management</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Places Images</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+  <div class="mb-3">
+        <a href="{% url 'create_place_image' %}" class="btn btn-primary">Create Place Image</a>
+  </div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Places Images Data</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                     <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Image URL</th>
+                                 <th>Place ID</th>
+                                 <th>Image ID</th>
+                                 <th>Action</th>
+                            </tr>
+                       </thead>
+                       <tbody>
+                         {% for image in images_data %}
+                              <tr>
+                                    <td><img src="{{ image.data.image }}" alt="Place Image" style="max-width: 100px; max-height: 100px;"></td>
+                                    <td>{{ image.data.place_id }}</td>
+                                      <td>{{ image.data.image_id }}</td>
+                                  <td>
+                                         <a href="{% url 'update_place_image' image.id %}" class="btn btn-sm btn-primary">Update</a>
+                                    </td>
+                                </tr>
+                           {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

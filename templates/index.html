@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Dashboard</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+
+<!-- Start Dashboard Content Here -->
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h3 class="mb-0">{{new_users}}</h3>
+                        <p class="mb-0 text-white-75">New Users</p>
+                    </div>
+                    <i class="ri-user-add-line fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h3 class="mb-0">{{new_reviews}}</h3>
+                        <p class="mb-0 text-white-75">New Reviews</p>
+                    </div>
+                    <i class="ri-star-line fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h3 class="mb-0">{{new_places}}</h3>
+                        <p class="mb-0 text-white-75">New Places</p>
+                    </div>
+                    <i class="ri-map-pin-line fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h3 class="mb-0">{{total_cities}}</h3>
+                        <p class="mb-0 text-white-75">Total Cities</p>
+                    </div>
+                    <i class="ri-map-pin-line fs-4"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Add More Dashboard Elements -->
+    <!-- <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Banner City Data</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Displaying all the data -->
+                    <!-- {% for doc_id, doc_data in banner_city_data.items %}
+                     <p><strong>Document ID: {{ doc_id }}</strong></p>
+                        {% for key, value in doc_data.items %}
+                                <p>{{ key }}: {{ value }}</p> -->
+                        <!-- {% endfor %} -->
+                       <!-- <hr> -->
+                    <!-- {% endfor %} -->
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div>  -->
+</div>
+<!-- End Dashboard Content Here -->
+
+{% endblock %}
+

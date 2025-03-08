@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Countries Management | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Countries Management</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Countries</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+    <div class="mb-3">
+        <a href="{% url 'create_country' %}" class="btn btn-primary">Create Country</a>
+    </div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Countries Data</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Country Name</th>
+                                 <th>Country ID</th>
+                                  <th>Action</th>
+                            </tr>
+                        </thead>
+                       <tbody>
+                            {% for country in countries_data %}
+                                <tr>
+                                    <td>{{ country.data.country_name }}</td>
+                                    <td>{{ country.data.country_id }}</td>
+                                    <td>
+                                        <a href="{% url 'update_country' country.id %}"  class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
+
+                                              <!-- <a href="{% url 'update_country' country.id %}" class="btn btn-sm btn-primary">Update</a> -->
+                                        </td>
+                                </tr>
+                            {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

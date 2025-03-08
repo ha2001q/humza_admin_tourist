@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Place | Your App Name{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Update User Header -->
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Update User</h4>
+                <a href="/users" class="btn btn-secondary" style="padding: 10px 20px; font-size: 16px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    Back to Users
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Image Display -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update User</button>
+    </form>
+    <!-- Update User Information -->
+    <div class="col-xl-9 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">User Information</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" id="updateUserForm">
+                    {% csrf_token %}
+                    
+                    <!-- User Name -->
+                    <div class="mb-3">
+                        <label for="user_name" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="user_name" name="user_name" value="{{ user_data.user_name }}" required>
+                    </div>
+                    
+                    <!-- User Email -->
+                    <div class="mb-3">
+                        <label for="user_email" class="form-label">User Email</label>
+                        <input type="email" class="form-control" id="user_email" name="user_email" value="{{ user_data.user_email }}" required>
+                    </div>
+                    
+                    <!-- User Password -->
+                    <div class="mb-3">
+                        <label for="user_password" class="form-label">User Password</label>
+                        <input type="password" class="form-control" id="user_password" name="user_password" value="{{ user_data.user_password }}" required>
+                    </div>
+                    
+                    <!-- User Image Upload -->
+                    <div class="mb-3">
+                        <label for="user_image" class="form-label">User Image</label>
+                        <input type="file" class="form-control" id="user_image_input" name="user_image" accept="image/*" onchange="uploadImage()">
+                    </div>
+                    
+                    <!-- User Image URL -->
+                    <div class="mb-3">
+                        <label for="user_image_url" class="form-label">User Image URL</label>
+                        <input type="url" class="form-control" id="user_image_url" name="user_image_url" value="{{ user_data.user_image }}" readonly>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Update User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+document.getElementById('uploadForm').onsubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const response = await fetch('/upload_image/', {
+        method: 'POST',
+        body: formData,
+    });
+    const result = await response.json();
+    if (response.ok) {
+        alert(`File uploaded successfully: ${result.url}`);
+    } else {
+        alert(`Error: ${result.error}`);
+    }
+};
+
+</script>
+
+
+{% endblock %}

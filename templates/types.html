@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Types Management | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Types Management</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Types</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+   <div class="mb-3">
+          <a href="{% url 'create_type' %}" class="btn btn-primary">Create Type</a>
+   </div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Types Data</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Type Name</th>
+                                <th>Type Icon</th>
+                                 <th>Type ID</th>
+                                 <th>Action</th>
+                            </tr>
+                       </thead>
+                       <tbody>
+                            {% for type in types_data %}
+                                <tr>
+                                     <td>{{ type.data.type_name }}</td>
+                                    <td>{{ type.data.type_icon }}</td>
+                                       <td>{{ type.data.type_id }}</td>
+                                       <td><a href="{% url 'update_type' type.id %}" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a></td>
+                                        <!-- <td><a href="" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a></td> -->
+                                     
+                                </tr>
+                            {% endfor %}
+                       </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

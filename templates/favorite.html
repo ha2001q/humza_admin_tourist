@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}User Favorites | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">User Favorites</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">User Favorites</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">User Favorites Data</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <!-- <th>Place Name</th> -->
+                                   <th>Place ID</th>
+                                <th>User Name</th>
+                                <!-- <th>User ID</th> -->
+                            </tr>
+                       </thead>
+                     <tbody>
+                           {% for favorite in favorites_data %}
+                                <tr>
+                                      <!-- <td>{{ favorite.place_name }}</td> -->
+                                      <td>
+                                      <a href="{% url 'place_view'  favorite.data.place_id   %}">
+                                        {{ favorite.data.place_id }}
+                                    </a></td>
+                                      <td>{{ favorite.user_name}}</td>
+                                         <!-- <td>{{ favorite.data.user_id }}</td> -->
+                                </tr>
+                           {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Users | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Users</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+  <div class="mb-3">
+        <a href="{% url 'create_user' %}" class="btn btn-primary">Create User</a>
+  </div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Users Data</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                     <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>User Image</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>User password</th>
+                                <th>User Created At</th>
+                                <th>Actions</th>
+
+                             </tr>
+                       </thead>
+                     <tbody>
+                            {% for user in users_data %}
+                                <tr>
+                                    <td><img src="{{ user.data.user_image }}" class="avatar-sm rounded-circle me-2" alt="User Image"></td>
+
+                                    <td>{{ user.data.user_name }}</td>
+                                    <td>{{ user.data.user_email }}</td>
+                                       <!-- <td><img src="{{ user.data.user_image }}" alt="User Image" style="max-width: 100px; max-height: 100px;"></td> -->
+                                    <td>{{ user.data.user_password }}</td>
+                                    <td>{{ user.data.user_created_at }}</td>
+                                    <td><a href="{% url 'update_user' user.data.user_id %}" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a></td>
+                                    
+                                    <td><a href="{% url 'delete_user' user.data.user_id %}" onclick="return confirm('Are you sure you want to delete this review?');" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a></td>
+                                </tr>
+                            {% endfor %}
+                      </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

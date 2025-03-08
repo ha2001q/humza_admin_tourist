@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Notification | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<h2>Send Notification</h2>
+<form method="POST">
+    {% csrf_token %}
+    
+
+    <label>Title:</label>
+    <input type="text" name="title" required><br><br>
+
+    <label>Body:</label>
+    <textarea name="body" required></textarea><br><br>
+
+    <button type="submit">Send Notification</button>
+</form>
+{% endblock %}

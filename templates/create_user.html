@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Create User | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Create User</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+                 <li class="breadcrumb-item active">Create</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="user_name" class="form-label">User Name</label>
+                      <input type="text" class="form-control" id="user_name" name="user_name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="user_email" class="form-label">User Email</label>
+                      <input type="email" class="form-control" id="user_email" name="user_email" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="user_password" class="form-label">User Password</label>
+                      <input type="text" class="form-control" id="user_password" name="user_password" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="user_image" class="form-label">User Image</label>
+                      <input type="file" class="form-control" id="user_image" name="user_image" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                  </form>
+                  
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

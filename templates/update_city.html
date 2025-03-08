@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Update City | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Update City</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Cities</a></li>
+                 <li class="breadcrumb-item active">Update</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                 <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="city_name" class="form-label">City Name</label>
+                        <input type="text" class="form-control" id="city_name" name="city_name" value="{{city.city_name}}" required>
+                     </div>
+                     <div class="mb-3">
+                        <label for="country_id" class="form-label">Country</label>
+                        <select class="form-control" id="country_id" name="country_id" required>
+                                 {% for country in countries %}
+                                    <option value="{{ country.id }}" {% if country.id == city.country_id %}selected{% endif %}>{{ country.name }}</option>
+                                {% endfor %}
+                          </select>
+                      </div>
+
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

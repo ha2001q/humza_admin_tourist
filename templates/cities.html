@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Cities Management | Your App Name{% endblock %}
+
+{% block content %}
+<!-- ========== Page Title Start ========== -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="mb-0 fw-semibold">Cities Management</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Cities</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== Page Title End ========== -->
+  <div class="mb-3">
+        <a href="{% url 'create_city' %}" class="btn btn-primary">Create City</a>
+  </div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Cities Data</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>City ID</th>
+                                <th>City Name</th>
+                                <th>Country</th>
+                                <th>Action</th>
+                            </tr>
+                       </thead>
+                       <tbody>
+                            {% for city in cities_data %}
+                                 <tr>
+                                    <td>{{ city.data.city_id }}</td>
+                                    <td>{{ city.data.city_name }}</td>
+                                    <td>{{ city.country_name }}</td>
+                                       <!-- <td>{{ city.data.country_id }}</td> -->
+                                    <td>
+                                        <a href="{% url 'update_city' city.id %}" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                        
+                                        <!-- <a href="{% url 'update_city' city.id %}" class="btn btn-sm btn-primary">Update</a> -->
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
